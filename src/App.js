@@ -1,11 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import TaskManager from "./components/TaskManager";
 import "./styles.css";
 
 export default function App() {
-				const [tasks, setTasks] = useState([]);
-				/**const [name, setName] = useState("John Doe");**/
+				const [tasks, setTasksState] = useState([]);
+
+				function setTasks(newTasks) {
+					setTasksState(newTasks);
+					window.localStorage.setItem("tasks", JSON.stringify(newTasks));			
+				}
+
+				useEffect(() => {
+					const savedTasks = JSON.parse(window.localStorage.getItem("tasks"));
+					setTasksState(savedTasks ?? []);
+					
+				}, []);
+
 				return (
 								<div className="App">
 								<Header tasks={tasks} />

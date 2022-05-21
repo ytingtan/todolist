@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
 function OverviewBox(props) {
 				const {tasks} = props;
-				const [name, setName] = useState("John Doe");
+				const [name, setName] = useState("Loading name...");
 
 				const numOfUndone = tasks.filter((task) => !task.isComplete).length;
+
+				useEffect(() => {
+								const savedName = window.localStorage.getItem("name");
+								setName(savedName ?? "John Doe");
+				}, []);
+
 				return (
 								
 								<div className="HeaderBox">
@@ -12,9 +18,10 @@ function OverviewBox(props) {
 								<strong
 								role="button"
 								onClick={() => {
-												const newName = prompt("What is your name?");
+												const newName = prompt("What is your name?", name);
 												setName(newName);
-								}}>{name || set-a-name-here}</strong>!
+												window.localStorage.setItem("name", newName);
+								}}>{name || "<set a name>"}</strong>!
 								</p> 
 								<p>You have{" "} <strong>{numOfUndone} task{numOfUndone == 1 ? "" : "s"}</strong>{" "} that {numOfUndone == 1 ? " is " : " are "} not complete.</p>
 								</div>
