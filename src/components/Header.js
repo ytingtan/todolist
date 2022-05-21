@@ -1,8 +1,11 @@
 import { useState } from "react";
-function OverviewBox() {
-				const [name, setName] = useState("default name");
+function OverviewBox(props) {
+				const {tasks} = props;
+				const [name, setName] = useState("John Doe");
 
+				const numOfUndone = tasks.filter((task) => !task.isComplete).length;
 				return (
+								
 								<div className="HeaderBox">
 								<h2>Overview</h2>
 								<p>Welcome back{" "} 
@@ -13,7 +16,7 @@ function OverviewBox() {
 												setName(newName);
 								}}>{name || set-a-name-here}</strong>!
 								</p> 
-								<p>You have <strong>4 tasks </strong> that are not complete.</p>
+								<p>You have{" "} <strong>{numOfUndone} task{numOfUndone == 1 ? "" : "s"}</strong>{" "} that {numOfUndone == 1 ? " is " : " are "} not complete.</p>
 								</div>
 				);
 }
@@ -25,12 +28,13 @@ const CatFactBox = () => (
 				</div>	
 );
 
-export default function Header() {
+export default function Header(props) {
+				const { tasks } = props;
 				return ( 
 								<header>
 								<h1>Orbitodolist</h1>
 								<div style={{ display: "flex", flexFlow: "row nowrap" }}>
-								<OverviewBox />
+								<OverviewBox tasks={tasks} />
 								<CatFactBox />
 								</div>
 								</header>

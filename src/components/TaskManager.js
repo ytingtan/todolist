@@ -46,9 +46,9 @@ const { setTasks, tasks } = props;
 			);
 }
 
-export default function TaskManager() {
-
-				const [tasks, setTasks] = useState([]);
+export default function TaskManager(props) {
+				const { tasks, setTasks } = props;
+				/** const [tasks, setTasks] = useState([]); **/
 				const [addTaskText, setAddTaskText] = useState("");
 							
 				function handleSubmit(event) {
