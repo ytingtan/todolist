@@ -2,20 +2,20 @@ import React, { useState } from "react";
 
 function TaskList(props) {
 
-			
+const { setTasks, tasks } = props;			
 	function handleCheckbox(index, task) {
 		const newTasks = [ 
-						...props.tasks.slice(0, index),
+						...tasks.slice(0, index),
 						{ description: task.description, 
 							isComplete: !task.isComplete },
-						...props.tasks.slice(index + 1)
+						...tasks.slice(index + 1)
 		];
-		props.setTasks(newTasks);
+		setTasks(newTasks);
 	}
 	return (
 		<div>			
 		<h2>Task List</h2>
-			{props.tasks.length > 0 ? (		
+			{tasks.length > 0 ? (		
 			<table style={{ margin: "0 auto", width: "100%" }}>
 			  <thead>
 			  <tr>
@@ -25,7 +25,7 @@ function TaskList(props) {
 				</tr>
 				</thead>
 				<tbody>
-					{props.tasks.map((task, index) => (
+					{tasks.map((task, index) => (
 					 // We should specify key here to help react identify
 					 // what has updated
 					 // https://reactjs.org/docs/lists-and-keys.html#keys
