@@ -1,6 +1,17 @@
 import React, { useState } from "react";
 
 function TaskList(props) {
+
+			
+	function handleCheckbox(index, task) {
+		const newTasks = [ 
+						...props.tasks.slice(0, index),
+						{ description: task.description, 
+							isComplete: !task.isComplete },
+						...props.tasks.slice(index + 1)
+		];
+		props.setTasks(newTasks);
+	}
 	return (
 		<div>			
 		<h2>Task List</h2>
@@ -22,7 +33,7 @@ function TaskList(props) {
 						 <td>{index + 1}</td>
 						 <td>{task.description}</td>
 						 <td>
-						 <input type="checkbox" checked={task.isComplete} />
+						 <input type="checkbox" checked={task.isComplete} onChange={() => handleCheckbox(index, task)}/>
 						 </td>
 						 </tr>
          ))}
@@ -68,7 +79,7 @@ export default function TaskManager() {
 											<input type="submit" value="Add" />
 										</form>
 										</div>
-										<TaskList tasks={tasks} />
+										<TaskList tasks={tasks} setTasks={setTasks} />
 								</>
 				);
 
