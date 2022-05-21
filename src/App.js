@@ -10,7 +10,7 @@ export default function App() {
 				<div style={{ display: "flex", flexFlow: "row nowrap" }}>
 					<div className="HeaderBox">
 						<h2>Overview</h2>
-						<p>Welcome back, 
+						<p>Welcome back{" "} 
 							<strong
 								role="button"
 								onClick={() => {
