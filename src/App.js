@@ -4,15 +4,15 @@ import TaskManager from "./components/TaskManager";
 import "./styles.css";
 
 export default function App() {
-	const [name, setName] = useState("John Doe");
-	return (
-		<div className="App">
-		<Header />
-		<main>
-			<TaskManager />
-		</main>
-		</div>
-	);
+				const [name, setName] = useState("John Doe");
+				return (
+								<div className="App">
+								<Header />
+								<main>
+								<TaskManager />
+								</main>
+								</div>
+				);
 
 
 
