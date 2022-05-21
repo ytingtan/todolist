@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 function OverviewBox(props) {
 				const {tasks} = props;
 				const [name, setName] = useState("John Doe");
@@ -21,12 +21,25 @@ function OverviewBox(props) {
 				);
 }
 
-const CatFactBox = () => (
+const CatFactBox = () => {
+	const [catFact, setCatFact] = useState("Loading cat fact...");
+	
+	useEffect(() => {
+					fetch("https://catfact.ninja/fact")
+					.then((response) => response.json())
+					.then((data) => setCatFact(data.fact))
+					.catch((error) => 
+									setCatFact(`Unable to retrieve cat fact. Error: ${error}`)
+					);
+	}, []);
+
+	return (
 				<div className="HeaderBox">
 				<h2>Cat Fact of the Day</h2>
-				Cat fact #1.
+				<p>{catFact}</p>
 				</div>	
-);
+	);
+}
 
 export default function Header(props) {
 				const { tasks } = props;
