@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import Box from "../Box";
+import styles from "./Header.module.css"
+
 function OverviewBox(props) {
 				const {tasks} = props;
 				const [name, setName] = useState("Loading name...");
@@ -12,7 +15,8 @@ function OverviewBox(props) {
 
 				return (
 								
-								<div className="HeaderBox">
+								
+								<Box>
 								<h2>Overview</h2>
 								<p>Welcome back{" "} 
 								<strong
@@ -24,7 +28,8 @@ function OverviewBox(props) {
 								}}>{name || "<set a name>"}</strong>!
 								</p> 
 								<p>You have{" "} <strong>{numOfUndone} task{numOfUndone == 1 ? "" : "s"}</strong>{" "} that {numOfUndone == 1 ? " is " : " are "} not complete.</p>
-								</div>
+								</Box>
+								
 				);
 }
 
@@ -41,10 +46,12 @@ const CatFactBox = () => {
 	}, []);
 
 	return (
-				<div className="HeaderBox">
+				
+				<Box>
 				<h2>Cat Fact of the Day</h2>
 				<p>{catFact}</p>
-				</div>	
+				</Box>
+					
 	);
 }
 
